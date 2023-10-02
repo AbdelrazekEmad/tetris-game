@@ -5,10 +5,26 @@ document.addEventListener("DOMContentLoaded", () => {
   const scoreDesplay = document.querySelector("#score");
   const startBtn = document.querySelector("#start-button");
   const width = 10;
+  const gameOverModle = document.querySelector(".gameovey-modle");
+  const modleScoreDesplay = document.querySelector("#modle-score");
+  const highScoreDesplay = document.querySelector(".high-score span");
   let nextRandom = 0;
   let timerId;
   let score = 0;
-  const colors = ["orang", "red", "purple", "green", "blue"];
+  const colors = ["#98db57", "#de6652", "#4cd5b1", "#5ebee1", "#eb964a"];
+
+  //function to play sound
+  function soundPlay() {
+    var audio = new Audio("./tetrominoSound.m4a");
+    audio.play();
+  }
+
+  function checkHighScore() {
+    if (localStorage.getItem("score")) {
+      highScoreDesplay.innerHTML = localStorage.getItem("score");
+    }
+  }
+  checkHighScore();
 
   // The Tetrominoes
   const lTetromino = [
@@ -73,6 +89,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   //assign function to keycodes
+  document.addEventListener("keyup", control);
   function control(e) {
     if (e.keyCode === 37) {
       moveLeft();
@@ -84,7 +101,6 @@ document.addEventListener("DOMContentLoaded", () => {
       moveDown();
     }
   }
-  document.addEventListener("keyup", control);
 
   function moveDown() {
     unDraw();
@@ -132,6 +148,7 @@ document.addEventListener("DOMContentLoaded", () => {
       currentPosition += 1;
     }
     draw();
+    soundPlay();
   }
 
   // move the tetromino right unless is at the adge or there is a blockage
@@ -150,6 +167,7 @@ document.addEventListener("DOMContentLoaded", () => {
       currentPosition -= 1;
     }
     draw();
+    soundPlay();
   }
 
   //rotate the tetromino
@@ -161,6 +179,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     current = theTetrominoes[radnom][currentRotation];
     draw();
+    soundPlay();
   }
 
   // show up-next tetromino in mini-grid
@@ -196,10 +215,12 @@ document.addEventListener("DOMContentLoaded", () => {
     if (timerId) {
       clearInterval(timerId);
       timerId = null;
+      startBtn.classList.remove("pause");
     } else {
       draw();
-      timerId = setInterval(moveDown, 1000);
+      timerId = setInterval(moveDown, 500);
       nextRandom = Math.floor(Math.random() * theTetrominoes.length);
+      startBtn.classList.add("pause");
       displayShape();
     }
   });
@@ -222,6 +243,10 @@ document.addEventListener("DOMContentLoaded", () => {
       if (row.every((index) => squeres[index].classList.contains("taken"))) {
         score += 10;
         scoreDesplay.innerHTML = score;
+        modleScoreDesplay.innerHTML = score;
+        if (+localStorage.getItem("score") < score) {
+          localStorage.setItem("score", score);
+        }
         row.forEach((index) => {
           squeres[index].classList.remove("taken");
           squeres[index].classList.remove("tetromino");
@@ -242,7 +267,14 @@ document.addEventListener("DOMContentLoaded", () => {
       )
     ) {
       scoreDesplay.innerHTML = "end";
+      gameOverModle.classList.add("active");
       clearInterval(timerId);
     }
   }
+
+  //when its game over and click on play button on modle ,hide and start game
+  document.getElementById("modle-start-btn").addEventListener("click", () => {
+    gameOverModle.classList.remove("active");
+    location.reload();
+  });
 });

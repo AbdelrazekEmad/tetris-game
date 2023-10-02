@@ -1,32 +1,176 @@
+@font-face {
+  font-family: euro;
+  src: url(./eurof55.ttf);
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  background-color: #fffeff;
+  font-family: euro, sans-serif;
+}
+.game-name {
+  text-align: center;
+  font-size: 5rem;
+  color: #f3e075;
+  margin-bottom: 1rem;
+}
 .contanier {
   display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 1rem;
 }
 .grid {
-  width: 200px;
-  height: 400px;
-  background-color: yellow;
+  width: 240px;
+  height: 504px;
   display: flex;
   flex-wrap: wrap;
 }
-
 .grid div {
-  width: 20px;
-  height: 20px;
+  width: 22px;
+  height: 22px;
+  margin: 1px;
+  border-radius: 3px;
+  background-color: #edeaed;
 }
-
-.tetromino {
-  background-color: blue;
+.grid div.trans {
+  background-color: transparent;
+}
+.sidebar {
+  margin-left: 2rem;
 }
 
 .mini-grid {
-  margin-left: 50px;
-  width: 80px;
-  height: 80px;
+  width: 88px;
+  height: 88px;
   display: flex;
   flex-wrap: wrap;
-  background-color: yellow;
 }
 .mini-grid div {
   width: 20px;
   height: 20px;
+  margin: 1px;
+  border-radius: 3px;
+  background-color: #edeaed;
+}
+.scores-wrape {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+.score {
+  text-align: center;
+  color: #4dd5b0;
+}
+.score span,
+.high-score span {
+  color: #000;
+}
+.high-score {
+  text-align: center;
+  color: #dc6555;
+}
+.btn-wrape {
+  display: flex;
+  justify-content: space-around;
+}
+.start-button,
+.reload-button {
+  width: 3rem;
+  height: 3rem;
+  border: none;
+  border-radius: 1rem;
+  background-color: #4ed3b2;
+  cursor: pointer;
+}
+.start-button::after {
+  content: "\f04b";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  font-size: 1.5rem;
+  color: #fff;
+}
+.start-button.pause::after {
+  content: "\f04c";
+}
+.reload-button i {
+  font-size: 1.5rem;
+  color: #fff;
+}
+.gameovey-modle {
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  background: #0000005b;
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+.gameovey-modle.active {
+  display: flex;
+}
+.gameovey-modle--card {
+  position: relative;
+  background: #fff;
+  border-radius: 1rem;
+  width: 350px;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.gameovey-modle--card h1 {
+  color: red;
+  font-size: 3rem;
+  margin-block: 1rem;
+}
+.gameovey-modle--card h3 {
+  margin: 0;
+}
+
+.shake {
+  animation-name: shake;
+  animation-duration: 0.1s;
+  animation-timing-function: linear;
+}
+.shake:last-child
+
+@keyframes shake {
+  0% {
+    transform: translate(2px, 1px) rotate(0deg);
+  }
+  10% {
+    transform: translate(-1px, -2px) rotate(-2deg);
+  }
+  20% {
+    transform: translate(-3px, 0px) rotate(3deg);
+  }
+  30% {
+    transform: translate(0px, 2px) rotate(0deg);
+  }
+  40% {
+    transform: translate(1px, -1px) rotate(1deg);
+  }
+  50% {
+    transform: translate(-1px, 2px) rotate(-1deg);
+  }
+  60% {
+    transform: translate(-3px, 1px) rotate(0deg);
+  }
+  70% {
+    transform: translate(2px, 1px) rotate(-2deg);
+  }
+  80% {
+    transform: translate(-1px, -1px) rotate(4deg);
+  }
+  90% {
+    transform: translate(2px, 2px) rotate(0deg);
+  }
+  100% {
+    transform: translate(1px, -2px) rotate(-1deg);
+  }
 }

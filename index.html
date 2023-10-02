@@ -6,12 +6,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="./app.js" charset="UTF-8"></script>
     <link rel="stylesheet" href="./style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
     <title>tetris Game</title>
   </head>
-  <body>
-    <h3>Score: <span id="score">0</span></h3>
-    <button id="start-button">Start / Pause</button>
 
+  <body>
+    <div class="gameovey-modle">
+      <div class="gameovey-modle--card">
+        <h1>Game Over</h1>
+        <h2>Try Again ...</h2>
+        <h2 class="score">Score: <br /><span id="modle-score">0</span></h2>
+        <button class="reload-button">
+          <a href="./index.html"
+            ><i class="fa-solid fa-arrow-rotate-right"></i
+          ></a>
+        </button>
+      </div>
+    </div>
     <div class="contanier">
       <div class="grid">
         <div></div>
@@ -214,35 +231,53 @@
         <div></div>
         <div></div>
         <div></div>
-        <div class="taken"></div>
-        <div class="taken"></div>
-        <div class="taken"></div>
-        <div class="taken"></div>
-        <div class="taken"></div>
-        <div class="taken"></div>
-        <div class="taken"></div>
-        <div class="taken"></div>
-        <div class="taken"></div>
-        <div class="taken"></div>
+        <div class="taken trans"></div>
+        <div class="taken trans"></div>
+        <div class="taken trans"></div>
+        <div class="taken trans"></div>
+        <div class="taken trans"></div>
+        <div class="taken trans"></div>
+        <div class="taken trans"></div>
+        <div class="taken trans"></div>
+        <div class="taken trans"></div>
+        <div class="taken trans"></div>
       </div>
-
-      <div class="mini-grid">
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
+      <div class="sidebar">
+        <div class="mini-grid">
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+        <h1 class="game-name">
+          Tetris<small style="font-size: 1.25rem"> . zoz</small>
+        </h1>
+        <div class="scores-wrape">
+          <h2 class="score">Score: <br /><span id="score">0</span></h2>
+          <h2 class="high-score">
+            High Score: <br /><span id="score">0</span>
+          </h2>
+        </div>
+        <div class="btn-wrape">
+          <button class="start-button" id="start-button"></button>
+          <button class="reload-button">
+            <a href="./index.html"
+              ><i class="fa-solid fa-arrow-rotate-right"></i
+            ></a>
+          </button>
+        </div>
       </div>
     </div>
   </body>
